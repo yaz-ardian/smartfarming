@@ -1,0 +1,902 @@
+[
+    {
+        "grid": "Grid479",
+        "temperature": 26.4,
+        "humidity": 62,
+        "soil": 447,
+        "ph": 6.0,
+        "light": 339,
+        "id": 1
+    },
+    {
+        "grid": "Grid291",
+        "temperature": 29.9,
+        "humidity": 49,
+        "soil": 823,
+        "ph": 5.0,
+        "light": 487,
+        "id": 2
+    },
+    {
+        "grid": "Grid265",
+        "temperature": 21.8,
+        "humidity": 63,
+        "soil": 421,
+        "ph": 6.6,
+        "light": 858,
+        "id": 3
+    },
+    {
+        "grid": "Grid175",
+        "temperature": 23.2,
+        "humidity": 66,
+        "soil": 762,
+        "ph": 5.5,
+        "light": 864,
+        "id": 4
+    },
+    {
+        "grid": "Grid403",
+        "temperature": 21.3,
+        "humidity": 65,
+        "soil": 520,
+        "ph": 7.2,
+        "light": 738,
+        "id": 5
+    },
+    {
+        "grid": "Grid380",
+        "temperature": 29.3,
+        "humidity": 45,
+        "soil": 749,
+        "ph": 5.7,
+        "light": 715,
+        "id": 6
+    },
+    {
+        "grid": "Grid368",
+        "temperature": 29.6,
+        "humidity": 45,
+        "soil": 617,
+        "ph": 5.7,
+        "light": 347,
+        "id": 7
+    },
+    {
+        "grid": "Grid88",
+        "temperature": 20.6,
+        "humidity": 88,
+        "soil": 568,
+        "ph": 5.8,
+        "light": 937,
+        "id": 8
+    },
+    {
+        "grid": "Grid46",
+        "temperature": 26.9,
+        "humidity": 51,
+        "soil": 686,
+        "ph": 6.9,
+        "light": 454,
+        "id": 9
+    },
+    {
+        "grid": "Grid82",
+        "temperature": 33.5,
+        "humidity": 76,
+        "soil": 663,
+        "ph": 6.5,
+        "light": 628,
+        "id": 10
+    },
+    {
+        "grid": "Grid402",
+        "temperature": 25.6,
+        "humidity": 86,
+        "soil": 848,
+        "ph": 6.7,
+        "light": 270,
+        "id": 11
+    },
+    {
+        "grid": "Grid400",
+        "temperature": 35.4,
+        "humidity": 84,
+        "soil": 754,
+        "ph": 6.6,
+        "light": 743,
+        "id": 12
+    },
+    {
+        "grid": "Grid93",
+        "temperature": 23.3,
+        "humidity": 76,
+        "soil": 593,
+        "ph": 6.0,
+        "light": 865,
+        "id": 13
+    },
+    {
+        "grid": "Grid112",
+        "temperature": 32.9,
+        "humidity": 72,
+        "soil": 353,
+        "ph": 5.6,
+        "light": 999,
+        "id": 14
+    },
+    {
+        "grid": "Grid273",
+        "temperature": 25.4,
+        "humidity": 79,
+        "soil": 486,
+        "ph": 6.4,
+        "light": 467,
+        "id": 15
+    },
+    {
+        "grid": "Grid461",
+        "temperature": 24.8,
+        "humidity": 61,
+        "soil": 771,
+        "ph": 5.4,
+        "light": 967,
+        "id": 16
+    },
+    {
+        "grid": "Grid29",
+        "temperature": 32.9,
+        "humidity": 42,
+        "soil": 812,
+        "ph": 6.1,
+        "light": 498,
+        "id": 17
+    },
+    {
+        "grid": "Grid400",
+        "temperature": 35.1,
+        "humidity": 48,
+        "soil": 628,
+        "ph": 7.2,
+        "light": 372,
+        "id": 18
+    },
+    {
+        "grid": "Grid407",
+        "temperature": 21.5,
+        "humidity": 88,
+        "soil": 698,
+        "ph": 7.0,
+        "light": 246,
+        "id": 19
+    },
+    {
+        "grid": "Grid287",
+        "temperature": 34.8,
+        "humidity": 88,
+        "soil": 659,
+        "ph": 7.4,
+        "light": 245,
+        "id": 20
+    },
+    {
+        "grid": "Grid31",
+        "temperature": 25.0,
+        "humidity": 42,
+        "soil": 681,
+        "ph": 5.1,
+        "light": 853,
+        "id": 21
+    },
+    {
+        "grid": "Grid304",
+        "temperature": 26.6,
+        "humidity": 84,
+        "soil": 882,
+        "ph": 6.8,
+        "light": 436,
+        "id": 22
+    },
+    {
+        "grid": "Grid348",
+        "temperature": 37.6,
+        "humidity": 57,
+        "soil": 343,
+        "ph": 7.1,
+        "light": 468,
+        "id": 23
+    },
+    {
+        "grid": "Grid319",
+        "temperature": 35.6,
+        "humidity": 80,
+        "soil": 433,
+        "ph": 6.8,
+        "light": 489,
+        "id": 24
+    },
+    {
+        "grid": "Grid56",
+        "temperature": 31.5,
+        "humidity": 80,
+        "soil": 314,
+        "ph": 5.0,
+        "light": 452,
+        "id": 25
+    },
+    {
+        "grid": "Grid193",
+        "temperature": 36.4,
+        "humidity": 87,
+        "soil": 655,
+        "ph": 6.2,
+        "light": 219,
+        "id": 26
+    },
+    {
+        "grid": "Grid464",
+        "temperature": 37.6,
+        "humidity": 45,
+        "soil": 890,
+        "ph": 5.4,
+        "light": 448,
+        "id": 27
+    },
+    {
+        "grid": "Grid464",
+        "temperature": 35.7,
+        "humidity": 43,
+        "soil": 585,
+        "ph": 5.3,
+        "light": 675,
+        "id": 28
+    },
+    {
+        "grid": "Grid14",
+        "temperature": 28.8,
+        "humidity": 64,
+        "soil": 851,
+        "ph": 5.6,
+        "light": 224,
+        "id": 29
+    },
+    {
+        "grid": "Grid162",
+        "temperature": 28.1,
+        "humidity": 46,
+        "soil": 320,
+        "ph": 5.6,
+        "light": 796,
+        "id": 30
+    },
+    {
+        "grid": "Grid355",
+        "temperature": 20.7,
+        "humidity": 51,
+        "soil": 330,
+        "ph": 5.6,
+        "light": 619,
+        "id": 31
+    },
+    {
+        "grid": "Grid303",
+        "temperature": 24.7,
+        "humidity": 48,
+        "soil": 658,
+        "ph": 6.8,
+        "light": 332,
+        "id": 32
+    },
+    {
+        "grid": "Grid46",
+        "temperature": 23.0,
+        "humidity": 60,
+        "soil": 405,
+        "ph": 7.1,
+        "light": 639,
+        "id": 33
+    },
+    {
+        "grid": "Grid113",
+        "temperature": 23.9,
+        "humidity": 82,
+        "soil": 783,
+        "ph": 7.3,
+        "light": 722,
+        "id": 34
+    },
+    {
+        "grid": "Grid403",
+        "temperature": 22.8,
+        "humidity": 43,
+        "soil": 421,
+        "ph": 7.2,
+        "light": 934,
+        "id": 35
+    },
+    {
+        "grid": "Grid399",
+        "temperature": 35.3,
+        "humidity": 58,
+        "soil": 338,
+        "ph": 6.9,
+        "light": 359,
+        "id": 36
+    },
+    {
+        "grid": "Grid12",
+        "temperature": 37.0,
+        "humidity": 71,
+        "soil": 613,
+        "ph": 6.6,
+        "light": 942,
+        "id": 37
+    },
+    {
+        "grid": "Grid258",
+        "temperature": 36.8,
+        "humidity": 85,
+        "soil": 428,
+        "ph": 6.9,
+        "light": 557,
+        "id": 38
+    },
+    {
+        "grid": "Grid198",
+        "temperature": 30.8,
+        "humidity": 85,
+        "soil": 622,
+        "ph": 7.2,
+        "light": 691,
+        "id": 39
+    },
+    {
+        "grid": "Grid376",
+        "temperature": 30.7,
+        "humidity": 79,
+        "soil": 539,
+        "ph": 6.8,
+        "light": 687,
+        "id": 40
+    },
+    {
+        "grid": "Grid211",
+        "temperature": 23.0,
+        "humidity": 75,
+        "soil": 855,
+        "ph": 6.2,
+        "light": 956,
+        "id": 41
+    },
+    {
+        "grid": "Grid52",
+        "temperature": 23.6,
+        "humidity": 71,
+        "soil": 374,
+        "ph": 5.5,
+        "light": 527,
+        "id": 42
+    },
+    {
+        "grid": "Grid284",
+        "temperature": 25.1,
+        "humidity": 45,
+        "soil": 607,
+        "ph": 6.7,
+        "light": 506,
+        "id": 43
+    },
+    {
+        "grid": "Grid150",
+        "temperature": 32.2,
+        "humidity": 52,
+        "soil": 474,
+        "ph": 6.9,
+        "light": 901,
+        "id": 44
+    },
+    {
+        "grid": "Grid155",
+        "temperature": 33.3,
+        "humidity": 75,
+        "soil": 829,
+        "ph": 6.3,
+        "light": 323,
+        "id": 45
+    },
+    {
+        "grid": "Grid458",
+        "temperature": 25.4,
+        "humidity": 89,
+        "soil": 457,
+        "ph": 5.9,
+        "light": 383,
+        "id": 46
+    },
+    {
+        "grid": "Grid1",
+        "temperature": 37.0,
+        "humidity": 72,
+        "soil": 479,
+        "ph": 7.2,
+        "light": 899,
+        "id": 47
+    },
+    {
+        "grid": "Grid64",
+        "temperature": 30.4,
+        "humidity": 50,
+        "soil": 333,
+        "ph": 5.7,
+        "light": 974,
+        "id": 48
+    },
+    {
+        "grid": "Grid301",
+        "temperature": 21.0,
+        "humidity": 57,
+        "soil": 500,
+        "ph": 7.3,
+        "light": 769,
+        "id": 49
+    },
+    {
+        "grid": "Grid88",
+        "temperature": 20.1,
+        "humidity": 77,
+        "soil": 664,
+        "ph": 6.9,
+        "light": 995,
+        "id": 50
+    },
+    {
+        "grid": "Grid319",
+        "temperature": 29.8,
+        "humidity": 77,
+        "soil": 739,
+        "ph": 5.1,
+        "light": 413,
+        "id": 51
+    },
+    {
+        "grid": "Grid84",
+        "temperature": 22.0,
+        "humidity": 70,
+        "soil": 450,
+        "ph": 5.7,
+        "light": 400,
+        "id": 52
+    },
+    {
+        "grid": "Grid285",
+        "temperature": 30.5,
+        "humidity": 58,
+        "soil": 679,
+        "ph": 6.8,
+        "light": 505,
+        "id": 53
+    },
+    {
+        "grid": "Grid152",
+        "temperature": 21.7,
+        "humidity": 59,
+        "soil": 828,
+        "ph": 7.2,
+        "light": 698,
+        "id": 54
+    },
+    {
+        "grid": "Grid161",
+        "temperature": 29.0,
+        "humidity": 82,
+        "soil": 439,
+        "ph": 6.1,
+        "light": 455,
+        "id": 55
+    },
+    {
+        "grid": "Grid265",
+        "temperature": 20.8,
+        "humidity": 81,
+        "soil": 512,
+        "ph": 6.1,
+        "light": 626,
+        "id": 56
+    },
+    {
+        "grid": "Grid297",
+        "temperature": 32.0,
+        "humidity": 73,
+        "soil": 865,
+        "ph": 5.6,
+        "light": 545,
+        "id": 57
+    },
+    {
+        "grid": "Grid383",
+        "temperature": 24.7,
+        "humidity": 42,
+        "soil": 864,
+        "ph": 6.8,
+        "light": 251,
+        "id": 58
+    },
+    {
+        "grid": "Grid37",
+        "temperature": 33.1,
+        "humidity": 53,
+        "soil": 797,
+        "ph": 6.4,
+        "light": 471,
+        "id": 59
+    },
+    {
+        "grid": "Grid434",
+        "temperature": 26.5,
+        "humidity": 65,
+        "soil": 546,
+        "ph": 5.5,
+        "light": 977,
+        "id": 60
+    },
+    {
+        "grid": "Grid343",
+        "temperature": 32.0,
+        "humidity": 49,
+        "soil": 699,
+        "ph": 5.5,
+        "light": 861,
+        "id": 61
+    },
+    {
+        "grid": "Grid224",
+        "temperature": 27.8,
+        "humidity": 42,
+        "soil": 771,
+        "ph": 5.5,
+        "light": 261,
+        "id": 62
+    },
+    {
+        "grid": "Grid177",
+        "temperature": 30.9,
+        "humidity": 58,
+        "soil": 366,
+        "ph": 7.2,
+        "light": 315,
+        "id": 63
+    },
+    {
+        "grid": "Grid479",
+        "temperature": 28.3,
+        "humidity": 89,
+        "soil": 399,
+        "ph": 6.3,
+        "light": 846,
+        "id": 64
+    },
+    {
+        "grid": "Grid434",
+        "temperature": 32.6,
+        "humidity": 77,
+        "soil": 718,
+        "ph": 5.5,
+        "light": 676,
+        "id": 65
+    },
+    {
+        "grid": "Grid2",
+        "temperature": 20.9,
+        "humidity": 72,
+        "soil": 741,
+        "ph": 6.7,
+        "light": 808,
+        "id": 66
+    },
+    {
+        "grid": "Grid90",
+        "temperature": 37.2,
+        "humidity": 73,
+        "soil": 478,
+        "ph": 6.5,
+        "light": 662,
+        "id": 67
+    },
+    {
+        "grid": "Grid248",
+        "temperature": 24.8,
+        "humidity": 64,
+        "soil": 808,
+        "ph": 5.2,
+        "light": 476,
+        "id": 68
+    },
+    {
+        "grid": "Grid237",
+        "temperature": 20.0,
+        "humidity": 63,
+        "soil": 706,
+        "ph": 7.3,
+        "light": 775,
+        "id": 69
+    },
+    {
+        "grid": "Grid422",
+        "temperature": 29.7,
+        "humidity": 66,
+        "soil": 724,
+        "ph": 6.5,
+        "light": 944,
+        "id": 70
+    },
+    {
+        "grid": "Grid120",
+        "temperature": 21.4,
+        "humidity": 70,
+        "soil": 862,
+        "ph": 7.3,
+        "light": 628,
+        "id": 71
+    },
+    {
+        "grid": "Grid342",
+        "temperature": 27.0,
+        "humidity": 57,
+        "soil": 893,
+        "ph": 6.7,
+        "light": 641,
+        "id": 72
+    },
+    {
+        "grid": "Grid232",
+        "temperature": 31.9,
+        "humidity": 59,
+        "soil": 795,
+        "ph": 6.7,
+        "light": 361,
+        "id": 73
+    },
+    {
+        "grid": "Grid185",
+        "temperature": 29.4,
+        "humidity": 55,
+        "soil": 422,
+        "ph": 5.5,
+        "light": 948,
+        "id": 74
+    },
+    {
+        "grid": "Grid56",
+        "temperature": 37.0,
+        "humidity": 65,
+        "soil": 727,
+        "ph": 5.3,
+        "light": 679,
+        "id": 75
+    },
+    {
+        "grid": "Grid62",
+        "temperature": 25.7,
+        "humidity": 53,
+        "soil": 452,
+        "ph": 5.7,
+        "light": 340,
+        "id": 76
+    },
+    {
+        "grid": "Grid197",
+        "temperature": 30.7,
+        "humidity": 44,
+        "soil": 840,
+        "ph": 6.7,
+        "light": 569,
+        "id": 77
+    },
+    {
+        "grid": "Grid265",
+        "temperature": 27.0,
+        "humidity": 88,
+        "soil": 616,
+        "ph": 7.0,
+        "light": 649,
+        "id": 78
+    },
+    {
+        "grid": "Grid236",
+        "temperature": 34.3,
+        "humidity": 42,
+        "soil": 845,
+        "ph": 6.6,
+        "light": 239,
+        "id": 79
+    },
+    {
+        "grid": "Grid325",
+        "temperature": 25.9,
+        "humidity": 60,
+        "soil": 859,
+        "ph": 7.2,
+        "light": 342,
+        "id": 80
+    },
+    {
+        "grid": "Grid287",
+        "temperature": 21.7,
+        "humidity": 87,
+        "soil": 789,
+        "ph": 6.9,
+        "light": 634,
+        "id": 81
+    },
+    {
+        "grid": "Grid447",
+        "temperature": 28.7,
+        "humidity": 75,
+        "soil": 824,
+        "ph": 5.1,
+        "light": 548,
+        "id": 82
+    },
+    {
+        "grid": "Grid19",
+        "temperature": 31.0,
+        "humidity": 51,
+        "soil": 824,
+        "ph": 6.4,
+        "light": 391,
+        "id": 83
+    },
+    {
+        "grid": "Grid16",
+        "temperature": 33.3,
+        "humidity": 47,
+        "soil": 732,
+        "ph": 6.8,
+        "light": 818,
+        "id": 84
+    },
+    {
+        "grid": "Grid188",
+        "temperature": 25.4,
+        "humidity": 68,
+        "soil": 434,
+        "ph": 5.8,
+        "light": 372,
+        "id": 85
+    },
+    {
+        "grid": "Grid101",
+        "temperature": 35.0,
+        "humidity": 46,
+        "soil": 750,
+        "ph": 6.2,
+        "light": 521,
+        "id": 86
+    },
+    {
+        "grid": "Grid376",
+        "temperature": 33.3,
+        "humidity": 52,
+        "soil": 635,
+        "ph": 6.3,
+        "light": 861,
+        "id": 87
+    },
+    {
+        "grid": "Grid298",
+        "temperature": 20.0,
+        "humidity": 41,
+        "soil": 378,
+        "ph": 6.6,
+        "light": 582,
+        "id": 88
+    },
+    {
+        "grid": "Grid108",
+        "temperature": 26.3,
+        "humidity": 62,
+        "soil": 339,
+        "ph": 6.0,
+        "light": 971,
+        "id": 89
+    },
+    {
+        "grid": "Grid369",
+        "temperature": 31.9,
+        "humidity": 84,
+        "soil": 348,
+        "ph": 6.4,
+        "light": 917,
+        "id": 90
+    },
+    {
+        "grid": "Grid254",
+        "temperature": 21.6,
+        "humidity": 54,
+        "soil": 588,
+        "ph": 5.7,
+        "light": 769,
+        "id": 91
+    },
+    {
+        "grid": "Grid299",
+        "temperature": 27.1,
+        "humidity": 69,
+        "soil": 722,
+        "ph": 6.9,
+        "light": 359,
+        "id": 92
+    },
+    {
+        "grid": "Grid106",
+        "temperature": 22.9,
+        "humidity": 73,
+        "soil": 361,
+        "ph": 7.3,
+        "light": 318,
+        "id": 93
+    },
+    {
+        "grid": "Grid438",
+        "temperature": 27.6,
+        "humidity": 71,
+        "soil": 307,
+        "ph": 6.9,
+        "light": 502,
+        "id": 94
+    },
+    {
+        "grid": "Grid226",
+        "temperature": 27.9,
+        "humidity": 46,
+        "soil": 809,
+        "ph": 6.0,
+        "light": 668,
+        "id": 95
+    },
+    {
+        "grid": "Grid275",
+        "temperature": 35.2,
+        "humidity": 55,
+        "soil": 796,
+        "ph": 6.9,
+        "light": 808,
+        "id": 96
+    },
+    {
+        "grid": "Grid89",
+        "temperature": 20.4,
+        "humidity": 78,
+        "soil": 361,
+        "ph": 6.6,
+        "light": 520,
+        "id": 97
+    },
+    {
+        "grid": "Grid195",
+        "temperature": 32.0,
+        "humidity": 66,
+        "soil": 309,
+        "ph": 7.2,
+        "light": 806,
+        "id": 98
+    },
+    {
+        "grid": "Grid104",
+        "temperature": 24.1,
+        "humidity": 89,
+        "soil": 576,
+        "ph": 6.2,
+        "light": 830,
+        "id": 99
+    },
+    {
+        "grid": "Grid83",
+        "temperature": 24.0,
+        "humidity": 53,
+        "soil": 547,
+        "ph": 5.1,
+        "light": 672,
+        "id": 100
+    }
+]
