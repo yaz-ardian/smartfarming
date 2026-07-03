@@ -7,7 +7,7 @@ const char* password = "";
 
 const char* mqttServer = "test.mosquitto.org";
 const int mqttPort = 1883;
-const char* topic = "smartfarm/data";
+const char* topic = "smartfarm_068/data";
 
 // MQTT Client
 WiFiClient espClient;
@@ -80,11 +80,11 @@ void loop() {
 
   String payload = "{";
   payload += "\"grid\":\"Grid" + String(grid) + "\",";
-  payload += "\"suhu\":" + String(temp) + ",";
-  payload += "\"kelembapan\":" + String(hum) + ",";
-  payload += "\"tanah\":" + String(soil) + ",";
+  payload += "\"temperature\":" + String(temp) + ",";
+  payload += "\"humidity\":" + String(hum) + ",";
+  payload += "\"soil\":" + String(soil) + ",";
   payload += "\"ph\":" + String(ph) + ",";
-  payload += "\"cahaya\":" + String(light);
+  payload += "\"light\":" + String(light);
   payload += "}";
 
   Serial.println(payload);
