@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Farming — Dashboard Benchmark Komputasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0B120E;
+    --bg-panel:#121C15;
+    --bg-panel-2:#182619;
+    --border:#263426;
+    --border-soft:#1D2A1F;
+    --text:#EAF2E7;
+    --text-dim:#8FA38F;
+    --text-faint:#5C6E5F;
+    --seq:#8FA38F;
+    --par:#E3AA45;
+    --dist:#46C2D9;
+    --leaf:#7FBF4D;
+    --warn:#E17A6E;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    --font-body:'Inter', sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(70,194,217,0.07), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(127,191,77,0.08), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{ max-width:1180px; margin:0 auto; padding:0 24px 80px; }
+
+  a{ color:inherit; }
+
+  ::selection{ background:var(--leaf); color:#0B120E; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--leaf);
+    background:rgba(127,191,77,0.09);
+    border:1px solid rgba(127,191,77,0.25);
+    padding:6px 12px;
+    border-radius:100px;
+    margin-bottom:22px;
+  }
+  .hero-badge .dot{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--leaf);
+    box-shadow:0 0 0 3px rgba(127,191,77,0.18);
+  }
+  .hero-title{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(30px, 4.6vw, 48px);
+    line-height:1.08;
+    margin:0 0 16px;
+    letter-spacing:-0.01em;
+  }
+  .hero-title span{ color:var(--leaf); }
+  .hero-sub{
+    max-width:640px;
+    color:var(--text-dim);
+    font-size:16px;
+    margin:0 0 40px;
+  }
+  .hero-sub code{
+    font-family:var(--font-mono);
+    background:var(--bg-panel-2);
+    border:1px solid var(--border);
+    padding:1px 6px;
+    border-radius:4px;
+    font-size:13px;
+    color:var(--text);
+  }
+
+  /* ---------- architecture diagram ---------- */
+  .diagram-wrap{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:22px 22px 18px;
+  }
+  .diagram-caption{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin:0 0 12px;
+  }
+  .diagram-svg{ width:100%; height:auto; display:block; }
+  .diag-node-label{ font-family:'IBM Plex Mono',monospace; font-size:12px; fill:var(--text); }
+  .diag-sub-label{ font-family:'Inter',sans-serif; font-size:10.5px; fill:var(--text-faint); }
+  .diag-branch-label{ font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; }
+
+  /* ---------- KPI ---------- */
+  .kpis{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:14px;
+    margin:36px 0 0;
+  }
+  .kpi-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:20px 18px;
+  }
+  .kpi-value{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:30px;
+    letter-spacing:-0.01em;
+  }
+  .kpi-value.c-par{ color:var(--par); }
+  .kpi-value.c-dist{ color:var(--dist); }
+  .kpi-value.c-leaf{ color:var(--leaf); }
+  .kpi-label{
+    margin-top:6px;
+    font-size:13px;
+    color:var(--text-dim);
+  }
+  .kpi-note{
+    margin-top:10px;
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--text-faint);
+  }
+
+  /* ---------- generic section ---------- */
+  .block{ margin-top:64px; }
+  .block-head{ margin-bottom:22px; }
+  .block-eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--dist);
+    margin:0 0 8px;
+  }
+  .block-title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:24px;
+    margin:0 0 8px;
+  }
+  .block-desc{
+    color:var(--text-dim);
+    font-size:14.5px;
+    max-width:620px;
+    margin:0;
+  }
+
+  /* ---------- table ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:var(--bg-panel);
+  }
+  table.benchmark-table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:920px;
+    font-family:var(--font-mono);
+    font-size:13px;
+  }
+  .benchmark-table thead th{
+    text-align:center;
+    padding:10px 14px;
+    font-weight:500;
+    color:var(--text-faint);
+    font-family:var(--font-body);
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    border-bottom:1px solid var(--border);
+  }
+  .benchmark-table thead tr.group-row th{
+    border-bottom:1px solid var(--border-soft);
+    color:var(--text-dim);
+    padding-bottom:8px;
+  }
+  .benchmark-table thead tr.sub-row th{
+    padding-top:8px;
+    font-size:11px;
+  }
+  .th-seq{ color:var(--seq); }
+  .th-par{ color:var(--par); }
+  .th-dist{ color:var(--dist); }
+  .benchmark-table td{
+    padding:12px 14px;
+    text-align:center;
+    border-bottom:1px solid var(--border-soft);
+    white-space:nowrap;
+  }
+  .benchmark-table tbody tr:last-child td{ border-bottom:none; }
+  .benchmark-table tbody tr:hover{ background:rgba(255,255,255,0.02); }
+  .td-dataset{
+    font-family:var(--font-display);
+    font-weight:600;
+    color:var(--text);
+    text-align:left;
+    font-size:14px;
+  }
+  .td-dataset small{
+    display:block;
+    font-family:var(--font-body);
+    font-weight:400;
+    color:var(--text-faint);
+    font-size:10.5px;
+    margin-top:2px;
+  }
+  .cell-seq{ color:var(--seq); }
+  .cell-par{ color:var(--par); }
+  .cell-dist{ color:var(--dist); }
+  .badge-valid{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:var(--font-body);
+    font-size:12px;
+    color:var(--leaf);
+    background:rgba(127,191,77,0.1);
+    border:1px solid rgba(127,191,77,0.28);
+    padding:3px 10px;
+    border-radius:100px;
+  }
+
+  /* ---------- charts ---------- */
+  .charts-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .chart-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:20px 20px 12px;
+  }
+  .chart-card-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:4px;
+  }
+  .chart-title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:15.5px;
+  }
+  .chart-unit{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    color:var(--text-faint);
+  }
+  .chart-desc{
+    font-size:12px;
+    color:var(--text-faint);
+    margin:2px 0 14px;
+  }
+  .chart-canvas-wrap{ height:230px; position:relative; }
+
+  /* ---------- footer ---------- */
+  .site-footer{
+    margin-top:70px;
+    padding-top:24px;
+    border-top:1px solid var(--border-soft);
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .footer-col{ font-size:12.5px; color:var(--text-faint); max-width:460px; }
+  .footer-col b{ color:var(--text-dim); font-weight:500; }
+  .footer-mono{ font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint); }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .kpis{ grid-template-columns:repeat(2, 1fr); }
+    .charts-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:520px){
+    .kpis{ grid-template-columns:1fr 1fr; }
+    .hero{ padding-top:36px; }
+  }
+
+  /* entrance */
+  @keyframes riseIn{ from{ opacity:0; transform:translateY(10px);} to{ opacity:1; transform:translateY(0);} }
+  .hero, .kpis, .block{ animation:riseIn 0.5s ease both; }
+  .kpis{ animation-delay:0.05s; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="hero-badge"><span class="dot"></span> Sistem Terdistribusi &amp; Komputasi Paralel</div>
+    <h1 class="hero-title">Smart Farming<br><span>Dashboard Benchmark</span> Komputasi</h1>
+    <p class="hero-sub">
+      Perbandingan performa <b>Sequential</b>, <b>Parallel</b> (multiprocessing 4 core),
+      dan <b>Distributed</b> (3 worker node via MQTT) dalam memproses data sensor lahan pertanian.
+      Data diambil dari <code>results/benchmark.csv</code> hasil <code>benchmark.py</code> pada repository ini.
+    </p>
+
+    <div class="diagram-wrap">
+      <p class="diagram-caption">Alur Data — ESP32 Sensor → MQTT Broker → Tiga Skema Pemrosesan</p>
+      <svg class="diagram-svg" viewBox="0 0 920 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- ESP32 node -->
+        <rect x="10" y="78" width="120" height="46" rx="8" fill="#182619" stroke="#263426"/>
+        <text x="70" y="97" text-anchor="middle" class="diag-node-label">ESP32</text>
+        <text x="70" y="112" text-anchor="middle" class="diag-sub-label">smartfarm/data</text>
+
+        <line x1="130" y1="101" x2="200" y2="101" stroke="#263426" stroke-width="1.5"/>
+        <polygon points="200,101 192,97 192,105" fill="#263426"/>
+
+        <!-- Broker node -->
+        <rect x="200" y="70" width="150" height="62" rx="8" fill="#121C15" stroke="#46C2D9" stroke-opacity="0.4"/>
+        <text x="275" y="96" text-anchor="middle" class="diag-node-label" fill="#46C2D9">MQTT Broker</text>
+        <text x="275" y="111" text-anchor="middle" class="diag-sub-label">test.mosquitto.org : 1883</text>
+        <text x="275" y="124" text-anchor="middle" class="diag-sub-label">topic: smartfarm_068/*</text>
+
+        <!-- three branch lines -->
+        <line x1="350" y1="101" x2="410" y2="30"  stroke="#8FA38F" stroke-width="1.5"/>
+        <line x1="350" y1="101" x2="410" y2="101" stroke="#E3AA45" stroke-width="1.5"/>
+        <line x1="350" y1="101" x2="410" y2="172" stroke="#46C2D9" stroke-width="1.5"/>
+
+        <!-- Sequential -->
+        <rect x="410" y="8" width="230" height="44" rx="8" fill="#121C15" stroke="#8FA38F" stroke-opacity="0.4"/>
+        <text x="426" y="34" class="diag-branch-label" fill="#8FA38F">Sequential</text>
+        <text x="426" y="47" class="diag-sub-label">1 proses — for-loop, 1 core</text>
+
+        <!-- Parallel -->
+        <rect x="410" y="79" width="230" height="44" rx="8" fill="#121C15" stroke="#E3AA45" stroke-opacity="0.4"/>
+        <text x="426" y="105" class="diag-branch-label" fill="#E3AA45">Parallel</text>
+        <text x="426" y="118" class="diag-sub-label">ProcessPoolExecutor — 4 core</text>
+
+        <!-- Distributed -->
+        <rect x="410" y="150" width="230" height="44" rx="8" fill="#121C15" stroke="#46C2D9" stroke-opacity="0.4"/>
+        <text x="426" y="176" class="diag-branch-label" fill="#46C2D9">Distributed</text>
+        <text x="426" y="189" class="diag-sub-label">dispatcher → 3 worker node (MQTT)</text>
+
+        <!-- arrows to results -->
+        <line x1="640" y1="30"  x2="700" y2="101" stroke="#8FA38F" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <line x1="640" y1="101" x2="700" y2="101" stroke="#E3AA45" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <line x1="640" y1="172" x2="700" y2="101" stroke="#46C2D9" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+        <!-- Result / Collector -->
+        <rect x="700" y="76" width="210" height="50" rx="8" fill="#182619" stroke="#263426"/>
+        <text x="805" y="97" text-anchor="middle" class="diag-node-label">Collector</text>
+        <text x="805" y="112" text-anchor="middle" class="diag-sub-label">smartfarm_068/result → benchmark.csv</text>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ============ KPI ============ -->
+  <section class="kpis" id="kpis"></section>
+
+  <!-- ============ TABLE ============ -->
+  <section class="block">
+    <div class="block-head">
+      <p class="block-eyebrow">01 — Hasil Pengukuran</p>
+      <h2 class="block-title">Tabel Hasil Benchmark</h2>
+      <p class="block-desc">Waktu eksekusi, throughput, speedup, dan efisiensi untuk setiap ukuran dataset, dibandingkan antara ketiga skema pemrosesan.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table class="benchmark-table">
+        <thead>
+          <tr class="group-row">
+            <th rowspan="2" style="text-align:left;">Dataset</th>
+            <th colspan="3">Waktu Eksekusi (s)</th>
+            <th colspan="3">Throughput (data/s)</th>
+            <th colspan="2">Speedup</th>
+            <th colspan="2">Efisiensi</th>
+          </tr>
+          <tr class="sub-row">
+            <th class="th-seq">Sequential</th>
+            <th class="th-par">Parallel</th>
+            <th class="th-dist">Distributed</th>
+            <th class="th-seq">Sequential</th>
+            <th class="th-par">Parallel</th>
+            <th class="th-dist">Distributed</th>
+            <th class="th-par">Parallel</th>
+            <th class="th-dist">Distributed</th>
+            <th class="th-par">Parallel</th>
+            <th class="th-dist">Distributed</th>
+          </tr>
+        </thead>
+        <tbody id="benchmark-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ CHARTS ============ -->
+  <section class="block">
+    <div class="block-head">
+      <p class="block-eyebrow">02 — Visualisasi</p>
+      <h2 class="block-title">Grafik Performa</h2>
+      <p class="block-desc">Empat metrik utama untuk menilai efektivitas paralelisasi dan distribusi beban kerja seiring bertambahnya ukuran dataset.</p>
+    </div>
+
+    <div class="charts-grid">
+
+      <div class="chart-card">
+        <div class="chart-card-head">
+          <span class="chart-title">Execution Time</span>
+          <span class="chart-unit">skala log · detik</span>
+        </div>
+        <p class="chart-desc">Waktu total pemrosesan dataset pada tiap skema.</p>
+        <div class="chart-canvas-wrap"><canvas id="chartTime"></canvas></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card-head">
+          <span class="chart-title">Throughput</span>
+          <span class="chart-unit">data / detik</span>
+        </div>
+        <p class="chart-desc">Jumlah data yang berhasil diproses per detik.</p>
+        <div class="chart-canvas-wrap"><canvas id="chartThroughput"></canvas></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card-head">
+          <span class="chart-title">Speedup</span>
+          <span class="chart-unit">kali lipat vs sequential</span>
+        </div>
+        <p class="chart-desc">Garis putus-putus menandai baseline 1× (sama dengan sequential).</p>
+        <div class="chart-canvas-wrap"><canvas id="chartSpeedup"></canvas></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card-head">
+          <span class="chart-title">Efficiency</span>
+          <span class="chart-unit">% pemanfaatan resource</span>
+        </div>
+        <p class="chart-desc">Speedup dibagi jumlah unit komputasi (4 core / 3 worker node).</p>
+        <div class="chart-canvas-wrap"><canvas id="chartEfficiency"></canvas></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-col">
+      <b>Tentang dashboard ini.</b> Data bersumber langsung dari <span class="footer-mono">results/benchmark.csv</span>
+      yang dihasilkan <span class="footer-mono">benchmark.py</span>. Ini adalah tampilan statis dari hasil pengujian —
+      jalankan ulang benchmark lalu perbarui data di bagian atas file ini untuk hasil terbaru.
+    </div>
+    <div class="footer-col">
+      <b>Konfigurasi pengujian.</b> Broker: <span class="footer-mono">test.mosquitto.org:1883</span> ·
+      Core paralel: <span class="footer-mono">4</span> · Worker terdistribusi: <span class="footer-mono">3</span> ·
+      Beban simulasi: <span class="footer-mono">HEAVY</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // ================= DATA (dari python/results/benchmark.csv) =================
+  const benchmarkData = [
+    { size:100,   seqTime:1.2268,   parTime:2.1014,  distTime:1.6276,
+      seqTp:81.51,  parTp:47.59,  distTp:61.44,
+      parSpeedup:0.58, distSpeedup:0.75, parEff:0.15, distEff:0.25,
+      parImp:-71.29, distImp:-32.67, valid:true },
+    { size:1000,  seqTime:11.425,   parTime:6.0012,  distTime:6.9373,
+      seqTp:87.53,  parTp:166.63, distTp:144.15,
+      parSpeedup:1.9,  distSpeedup:1.65, parEff:0.48, distEff:0.55,
+      parImp:47.47,  distImp:39.28,  valid:true },
+    { size:10000, seqTime:108.1074, parTime:31.3059, distTime:56.0701,
+      seqTp:92.5,   parTp:319.43, distTp:178.35,
+      parSpeedup:3.45, distSpeedup:1.93, parEff:0.86, distEff:0.64,
+      parImp:71.04,  distImp:48.13,  valid:true },
+  ];
+
+  const COLORS = {
+    seq:  '#8FA38F',
+    par:  '#E3AA45',
+    dist: '#46C2D9',
+    text: '#8FA38F',
+    grid: 'rgba(255,255,255,0.06)'
+  };
+
+  const fmt = (n, d=2) => Number(n).toFixed(d);
+  const fmtInt = (n) => Number(n).toLocaleString('id-ID');
+
+  // ================= KPI =================
+  function renderKPIs(){
+    const bestParSpeedup = benchmarkData.reduce((a,b)=> b.parSpeedup>a.parSpeedup?b:a);
+    const bestDistSpeedup = benchmarkData.reduce((a,b)=> b.distSpeedup>a.distSpeedup?b:a);
+    const bestParEff = benchmarkData.reduce((a,b)=> b.parEff>a.parEff?b:a);
+    const sizes = benchmarkData.map(d=>d.size);
+
+    const cards = [
+      {
+        value: fmt(bestParSpeedup.parSpeedup,2)+'×', cls:'c-par',
+        label:'Speedup Parallel Tertinggi',
+        note:`pada dataset ${fmtInt(bestParSpeedup.size)} data`
+      },
+      {
+        value: fmt(bestDistSpeedup.distSpeedup,2)+'×', cls:'c-dist',
+        label:'Speedup Distributed Tertinggi',
+        note:`pada dataset ${fmtInt(bestDistSpeedup.size)} data`
+      },
+      {
+        value: Math.round(bestParEff.parEff*100)+'%', cls:'c-leaf',
+        label:'Efisiensi Parallel Tertinggi',
+        note:`4 core, dataset ${fmtInt(bestParEff.size)} data`
+      },
+      {
+        value: benchmarkData.length, cls:'',
+        label:'Ukuran Dataset Diuji',
+        note:`${fmtInt(Math.min(...sizes))} – ${fmtInt(Math.max(...sizes))} data`
+      },
+    ];
+
+    document.getElementById('kpis').innerHTML = cards.map(c => `
+      <div class="kpi-card">
+        <div class="kpi-value ${c.cls}">${c.value}</div>
+        <div class="kpi-label">${c.label}</div>
+        <div class="kpi-note">${c.note}</div>
+      </div>
+    `).join('');
+  }
+
+  // ================= TABLE =================
+  function renderTable(){
+    const rows = benchmarkData.map(d => `
+      <tr>
+        <td class="td-dataset">${fmtInt(d.size)}<small>data points</small></td>
+        <td class="cell-seq">${fmt(d.seqTime)}</td>
+        <td class="cell-par">${fmt(d.parTime)}</td>
+        <td class="cell-dist">${fmt(d.distTime)}</td>
+        <td class="cell-seq">${fmt(d.seqTp)}</td>
+        <td class="cell-par">${fmt(d.parTp)}</td>
+        <td class="cell-dist">${fmt(d.distTp)}</td>
+        <td class="cell-par">${fmt(d.parSpeedup)}×</td>
+        <td class="cell-dist">${fmt(d.distSpeedup)}×</td>
+        <td class="cell-par">${Math.round(d.parEff*100)}%</td>
+        <td class="cell-dist">${Math.round(d.distEff*100)}%</td>
+        <td>${d.valid ? '<span class="badge-valid">✓ Lolos</span>' : '<span class="badge-valid" style="color:#E17A6E;border-color:rgba(225,122,110,0.3);background:rgba(225,122,110,0.1)">✗ Gagal</span>'}</td>
+      </tr>
+    `).join('');
+    document.getElementById('benchmark-tbody').innerHTML = rows;
+  }
+
+  // ================= CHARTS =================
+  Chart.defaults.font.family = "'Inter', sans-serif";
+  Chart.defaults.color = COLORS.text;
+
+  const labels = benchmarkData.map(d => fmtInt(d.size));
+
+  function baseGridOptions(extra={}){
+    return Object.assign({
+      responsive:true,
+      maintainAspectRatio:false,
+      interaction:{ mode:'index', intersect:false },
+      plugins:{
+        legend:{
+          display:true,
+          position:'bottom',
+          labels:{ boxWidth:9, boxHeight:9, padding:14, font:{ family:"'IBM Plex Mono', monospace", size:11 } }
+        },
+        tooltip:{
+          backgroundColor:'#182619',
+          borderColor:'#263426',
+          borderWidth:1,
+          titleColor:'#EAF2E7',
+          bodyColor:'#EAF2E7',
+          padding:10,
+          titleFont:{ family:"'Space Grotesk', sans-serif", weight:600 },
+          bodyFont:{ family:"'IBM Plex Mono', monospace" }
+        }
+      },
+      scales:{
+        x:{ grid:{ color:'rgba(255,255,255,0.03)' }, ticks:{ font:{ family:"'IBM Plex Mono', monospace", size:11 } } },
+        y:{ grid:{ color:COLORS.grid }, ticks:{ font:{ family:"'IBM Plex Mono', monospace", size:11 } } }
+      }
+    }, extra);
+  }
+
+  new Chart(document.getElementById('chartTime'), {
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        { label:'Sequential', data:benchmarkData.map(d=>d.seqTime), backgroundColor:COLORS.seq, borderRadius:4, maxBarThickness:28 },
+        { label:'Parallel',   data:benchmarkData.map(d=>d.parTime), backgroundColor:COLORS.par, borderRadius:4, maxBarThickness:28 },
+        { label:'Distributed',data:benchmarkData.map(d=>d.distTime),backgroundColor:COLORS.dist,borderRadius:4, maxBarThickness:28 },
+      ]
+    },
+    options: baseGridOptions({
+      scales:{
+        x:{ grid:{ display:false }, ticks:{ font:{ family:"'IBM Plex Mono', monospace", size:11 } } },
+        y:{ type:'logarithmic', grid:{ color:COLORS.grid }, ticks:{ font:{ family:"'IBM Plex Mono', monospace", size:11 }, callback:v=>{ const s=String(v); return ['1','2','5','10','20','50','100','200'].includes(s)? v+'s':''; } } }
+      }
+    })
+  });
+
+  new Chart(document.getElementById('chartThroughput'), {
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        { label:'Sequential', data:benchmarkData.map(d=>d.seqTp), backgroundColor:COLORS.seq, borderRadius:4, maxBarThickness:28 },
+        { label:'Parallel',   data:benchmarkData.map(d=>d.parTp), backgroundColor:COLORS.par, borderRadius:4, maxBarThickness:28 },
+        { label:'Distributed',data:benchmarkData.map(d=>d.distTp),backgroundColor:COLORS.dist,borderRadius:4, maxBarThickness:28 },
+      ]
+    },
+    options: baseGridOptions({
+      scales:{
+        x:{ grid:{ display:false }, ticks:{ font:{ family:"'IBM Plex Mono', monospace", size:11 } } },
+        y:{ grid:{ color:COLORS.grid }, ticks:{ font:{ family:"'IBM Plex Mono', monospace", size:11 } } }
+      }
+    })
+  });
+
+  new Chart(document.getElementById('chartSpeedup'), {
+    type:'line',
+    data:{
+      labels,
+      datasets:[
+        { label:'Baseline (1×)', data:benchmarkData.map(()=>1), borderColor:'#5C6E5F', borderDash:[4,4], pointRadius:0, borderWidth:1.5, tension:0 },
+        { label:'Parallel',    data:benchmarkData.map(d=>d.parSpeedup),  borderColor:COLORS.par,  backgroundColor:COLORS.par,  pointRadius:4, borderWidth:2.5, tension:0.3 },
+        { label:'Distributed', data:benchmarkData.map(d=>d.distSpeedup), borderColor:COLORS.dist, backgroundColor:COLORS.dist, pointRadius:4, borderWidth:2.5, tension:0.3 },
+      ]
+    },
+    options: baseGridOptions({
+      scales:{
+        x:{ grid:{ display:false }, ticks:{ font:{ family:"'IBM Plex Mono', monospace", size:11 } } },
+        y:{ grid:{ color:COLORS.grid }, ticks:{ callback:v=>v+'×', font:{ family:"'IBM Plex Mono', monospace", size:11 } } }
+      }
+    })
+  });
+
+  new Chart(document.getElementById('chartEfficiency'), {
+    type:'line',
+    data:{
+      labels,
+      datasets:[
+        { label:'Parallel',    data:benchmarkData.map(d=>Math.round(d.parEff*100)),  borderColor:COLORS.par,  backgroundColor:'rgba(227,170,69,0.12)',  pointRadius:4, borderWidth:2.5, tension:0.3, fill:true },
+        { label:'Distributed', data:benchmarkData.map(d=>Math.round(d.distEff*100)), borderColor:COLORS.dist, backgroundColor:'rgba(70,194,217,0.12)', pointRadius:4, borderWidth:2.5, tension:0.3, fill:true },
+      ]
+    },
+    options: baseGridOptions({
+      scales:{
+        x:{ grid:{ display:false }, ticks:{ font:{ family:"'IBM Plex Mono', monospace", size:11 } } },
+        y:{ min:0, max:100, grid:{ color:COLORS.grid }, ticks:{ callback:v=>v+'%', font:{ family:"'IBM Plex Mono', monospace", size:11 } } }
+      }
+    })
+  });
+
+  // ================= INIT =================
+  renderKPIs();
+  renderTable();
+</script>
+</body>
+</html>
