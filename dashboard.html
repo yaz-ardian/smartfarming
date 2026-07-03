@@ -102,32 +102,12 @@
     color:var(--text);
   }
 
-  /* ---------- architecture diagram ---------- */
-  .diagram-wrap{
-    background:var(--bg-panel);
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:22px 22px 18px;
-  }
-  .diagram-caption{
-    font-family:var(--font-mono);
-    font-size:11.5px;
-    color:var(--text-faint);
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    margin:0 0 12px;
-  }
-  .diagram-svg{ width:100%; height:auto; display:block; }
-  .diag-node-label{ font-family:'IBM Plex Mono',monospace; font-size:12px; fill:var(--text); }
-  .diag-sub-label{ font-family:'Inter',sans-serif; font-size:10.5px; fill:var(--text-faint); }
-  .diag-branch-label{ font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; }
-
   /* ---------- KPI ---------- */
   .kpis{
     display:grid;
     grid-template-columns:repeat(4, 1fr);
     gap:14px;
-    margin:36px 0 0;
+    margin:48px 0 0;
   }
   .kpi-card{
     background:var(--bg-panel);
@@ -243,18 +223,6 @@
   .cell-seq{ color:var(--seq); }
   .cell-par{ color:var(--par); }
   .cell-dist{ color:var(--dist); }
-  .badge-valid{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    font-family:var(--font-body);
-    font-size:12px;
-    color:var(--leaf);
-    background:rgba(127,191,77,0.1);
-    border:1px solid rgba(127,191,77,0.28);
-    padding:3px 10px;
-    border-radius:100px;
-  }
 
   /* ---------- charts ---------- */
   .charts-grid{
@@ -326,66 +294,14 @@
 
   <!-- ============ HERO ============ -->
   <header class="hero">
-    <div class="hero-badge"><span class="dot"></span> Sistem Terdistribusi &amp; Komputasi Paralel</div>
+    <div class="hero-badge"><span class="dot"></span> Sistem Terdistribusi &amp; Komputasi Paralel - Kelompok 1</div>
     <h1 class="hero-title">Smart Farming<br><span>Dashboard Benchmark</span> Komputasi</h1>
     <p class="hero-sub">
       Perbandingan performa <b>Sequential</b>, <b>Parallel</b> (multiprocessing 4 core),
       dan <b>Distributed</b> (3 worker node via MQTT) dalam memproses data sensor lahan pertanian.
-      Data diambil dari <code>results/benchmark.csv</code> hasil <code>benchmark.py</code> pada repository ini.
+      Data diambil dari <code>results/benchmark.csv</code> hasil <code>benchmark.py</code> pada project.
     </p>
-
-    <div class="diagram-wrap">
-      <p class="diagram-caption">Alur Data — ESP32 Sensor → MQTT Broker → Tiga Skema Pemrosesan</p>
-      <svg class="diagram-svg" viewBox="0 0 920 200" xmlns="http://www.w3.org/2000/svg">
-        <!-- ESP32 node -->
-        <rect x="10" y="78" width="120" height="46" rx="8" fill="#182619" stroke="#263426"/>
-        <text x="70" y="97" text-anchor="middle" class="diag-node-label">ESP32</text>
-        <text x="70" y="112" text-anchor="middle" class="diag-sub-label">smartfarm/data</text>
-
-        <line x1="130" y1="101" x2="200" y2="101" stroke="#263426" stroke-width="1.5"/>
-        <polygon points="200,101 192,97 192,105" fill="#263426"/>
-
-        <!-- Broker node -->
-        <rect x="200" y="70" width="150" height="62" rx="8" fill="#121C15" stroke="#46C2D9" stroke-opacity="0.4"/>
-        <text x="275" y="96" text-anchor="middle" class="diag-node-label" fill="#46C2D9">MQTT Broker</text>
-        <text x="275" y="111" text-anchor="middle" class="diag-sub-label">test.mosquitto.org : 1883</text>
-        <text x="275" y="124" text-anchor="middle" class="diag-sub-label">topic: smartfarm_068/*</text>
-
-        <!-- three branch lines -->
-        <line x1="350" y1="101" x2="410" y2="30"  stroke="#8FA38F" stroke-width="1.5"/>
-        <line x1="350" y1="101" x2="410" y2="101" stroke="#E3AA45" stroke-width="1.5"/>
-        <line x1="350" y1="101" x2="410" y2="172" stroke="#46C2D9" stroke-width="1.5"/>
-
-        <!-- Sequential -->
-        <rect x="410" y="8" width="230" height="44" rx="8" fill="#121C15" stroke="#8FA38F" stroke-opacity="0.4"/>
-        <text x="426" y="34" class="diag-branch-label" fill="#8FA38F">Sequential</text>
-        <text x="426" y="47" class="diag-sub-label">1 proses — for-loop, 1 core</text>
-
-        <!-- Parallel -->
-        <rect x="410" y="79" width="230" height="44" rx="8" fill="#121C15" stroke="#E3AA45" stroke-opacity="0.4"/>
-        <text x="426" y="105" class="diag-branch-label" fill="#E3AA45">Parallel</text>
-        <text x="426" y="118" class="diag-sub-label">ProcessPoolExecutor — 4 core</text>
-
-        <!-- Distributed -->
-        <rect x="410" y="150" width="230" height="44" rx="8" fill="#121C15" stroke="#46C2D9" stroke-opacity="0.4"/>
-        <text x="426" y="176" class="diag-branch-label" fill="#46C2D9">Distributed</text>
-        <text x="426" y="189" class="diag-sub-label">dispatcher → 3 worker node (MQTT)</text>
-
-        <!-- arrows to results -->
-        <line x1="640" y1="30"  x2="700" y2="101" stroke="#8FA38F" stroke-width="1.2" stroke-dasharray="3 3"/>
-        <line x1="640" y1="101" x2="700" y2="101" stroke="#E3AA45" stroke-width="1.2" stroke-dasharray="3 3"/>
-        <line x1="640" y1="172" x2="700" y2="101" stroke="#46C2D9" stroke-width="1.2" stroke-dasharray="3 3"/>
-
-        <!-- Result / Collector -->
-        <rect x="700" y="76" width="210" height="50" rx="8" fill="#182619" stroke="#263426"/>
-        <text x="805" y="97" text-anchor="middle" class="diag-node-label">Collector</text>
-        <text x="805" y="112" text-anchor="middle" class="diag-sub-label">smartfarm_068/result → benchmark.csv</text>
-      </svg>
-    </div>
   </header>
-
-  <!-- ============ KPI ============ -->
-  <section class="kpis" id="kpis"></section>
 
   <!-- ============ TABLE ============ -->
   <section class="block">
@@ -422,6 +338,9 @@
       </table>
     </div>
   </section>
+
+  <!-- ============ KPI ============ -->
+  <section class="kpis" id="kpis"></section>
 
   <!-- ============ CHARTS ============ -->
   <section class="block">
@@ -570,7 +489,6 @@
         <td class="cell-dist">${fmt(d.distSpeedup)}×</td>
         <td class="cell-par">${Math.round(d.parEff*100)}%</td>
         <td class="cell-dist">${Math.round(d.distEff*100)}%</td>
-        <td>${d.valid ? '<span class="badge-valid">✓ Lolos</span>' : '<span class="badge-valid" style="color:#E17A6E;border-color:rgba(225,122,110,0.3);background:rgba(225,122,110,0.1)">✗ Gagal</span>'}</td>
       </tr>
     `).join('');
     document.getElementById('benchmark-tbody').innerHTML = rows;
