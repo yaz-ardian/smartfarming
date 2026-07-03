@@ -5,9 +5,12 @@ import paho.mqtt.client as mqtt
 
 from config import *
 from processing import process_data
+from time_sync_client import TimeSyncClient   
 
 worker_id = int(sys.argv[1])
 
+time_sync = TimeSyncClient(f"worker_{worker_id}")
+time_sync.sync()
 client = mqtt.Client()
 
 
@@ -29,6 +32,7 @@ def on_message(client, userdata, msg):
     result = process_data(data)
 
     result["worker"] = worker_id
+    result["timestamp"] = time_sync.synced_time()
 
     client.publish(
         RESULT_TOPIC,
