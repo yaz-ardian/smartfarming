@@ -7,6 +7,8 @@ PROJECT_ID = "smartfarm_068"
 RAW_TOPIC = f"{PROJECT_ID}/data"
 JOB_TOPIC_PREFIX = f"{PROJECT_ID}/jobs"
 RESULT_TOPIC = f"{PROJECT_ID}/result"
+TIME_SYNC_REQUEST_TOPIC = f"{PROJECT_ID}/time_sync/request"
+TIME_SYNC_RESPONSE_TOPIC = f"{PROJECT_ID}/time_sync/response"
 
 # DATASET
 DATASET_SIZE = 100
