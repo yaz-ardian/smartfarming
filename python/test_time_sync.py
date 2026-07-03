@@ -1,29 +1,20 @@
-import threading
 import time
 
-from time_server import TimeServer
 from time_sync_client import TimeSyncClient
 
 
 def main():
 
-    # Jalankan Time Server di background thread
-    server = TimeServer()
-    threading.Thread(target=server.start, daemon=True).start()
-
-    time.sleep(1)  # beri waktu koneksi ke broker
+    print("========== SINKRONISASI WAKTU ANTAR NODE ==========\n")
+    print(f"{'Node':<10}{'Drift (s)':<12}{'Offset (s)':<14}{'Delay (s)':<12}"
+          f"{'Selisih Sblm':<15}{'Selisih Ssdh':<15}")
 
     # Simulasikan 3 node dengan jam lokal yang TIDAK sinkron
-    # (mis. worker_1 jamnya maju 2.5 detik, worker_2 mundur 1.3 detik, dst)
     nodes = [
         TimeSyncClient("worker_1", clock_drift=2.5),
         TimeSyncClient("worker_2", clock_drift=-1.3),
         TimeSyncClient("worker_3", clock_drift=0.8),
     ]
-
-    print("========== SINKRONISASI WAKTU ANTAR NODE ==========\n")
-    print(f"{'Node':<10}{'Drift (s)':<12}{'Offset (s)':<14}{'Delay (s)':<12}"
-          f"{'Selisih Sblm':<15}{'Selisih Ssdh':<15}")
 
     reference_time = time.time()
 

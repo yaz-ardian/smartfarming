@@ -46,12 +46,18 @@ def normalize_results(results):
 
         new_item = item.copy()
 
-        # Hapus metadata worker (khusus distributed)
+        # Hapus metadata sistem terdistribusi
         new_item.pop("worker", None)
+        new_item.pop("timestamp", None)
+
+        # Samakan representasi float
+        for key, value in new_item.items():
+            if isinstance(value, float):
+                new_item[key] = round(value, 2)
 
         normalized.append(new_item)
 
-    normalized = sorted(normalized, key=lambda x: x["id"])
+    normalized.sort(key=lambda x: x["id"])
 
     return normalized
 
@@ -126,8 +132,45 @@ def main():
         dist_result = normalize_results(dist_result)
 
         validation = (
-            seq_result == par_result == dist_result
-        )
+        seq_result == par_result == dist_result
+)
+
+        if not validation:
+
+            print("\n===== VALIDATION FAILED =====")
+            print("Sequential :", len(seq_result))
+            print("Parallel   :", len(par_result))
+            print("Distributed:", len(dist_result))
+
+            for i in range(min(len(seq_result), len(par_result), len(dist_result))):
+
+                if seq_result[i] != par_result[i]:
+
+                    print(f"\nParallel mismatch pada ID {seq_result[i]['id']}")
+
+                    print("Sequential")
+                    print(seq_result[i])
+
+                    print()
+
+                    print("Parallel")
+                    print(par_result[i])
+
+                    break
+
+                if seq_result[i] != dist_result[i]:
+
+                    print(f"\nDistributed mismatch pada ID {seq_result[i]['id']}")
+
+                    print("Sequential")
+                    print(seq_result[i])
+
+                    print()
+
+                    print("Distributed")
+                    print(dist_result[i])
+
+                    break
 
         print(f"Result Validation : {'PASSED' if validation else 'FAILED'}")
 
